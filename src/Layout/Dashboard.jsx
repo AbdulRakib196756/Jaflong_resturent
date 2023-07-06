@@ -26,9 +26,9 @@ const Dashboard = () => {
                     <ul className="menu p-4 w-80 h-full bg-[#D1A054] text-base-content space-y-3">
                         {
                             isadmin ? <>
-                                <li><NavLink to='/dashboard/userhome'><FaHome></FaHome>Admin Home</NavLink></li>
+                                <li><NavLink to='/dashboard/adminhome'><FaHome></FaHome>Admin Home</NavLink></li>
                                 <li>
-                                    <NavLink to='/dashboard/additem' ><FaUtensils></FaUtensils>Add Item <div className="badge badge-secondary">+{cart?.length || 0}</div> </NavLink>
+                                    <NavLink to='/dashboard/additem' ><FaUtensils></FaUtensils>Add Item </NavLink>
                                 </li>
                                 <li><NavLink to='/dashboard/manageitems' ><FaHamburger></FaHamburger>manage item</NavLink></li>
                                 <li><NavLink to='/dashboard/reservation'><FaBook></FaBook>manage booking</NavLink></li>

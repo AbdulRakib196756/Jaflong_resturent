@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Authcontext } from '../../../Provider/Authprovider';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaHome, FaShoppingCart, FaUserAlt } from 'react-icons/fa';
 import useCart from '../../../Hooks/Usecart';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Navbar = () => {
     const { user, logout } = useContext(Authcontext)
-    const [cart]=useCart()
+    const [cart] = useCart()
+    const [isadmin] = useAdmin()
     const handlelogout = () => {
         logout()
             .then(() => {
@@ -27,13 +29,11 @@ const Navbar = () => {
         <li><Link to='/order/salad'>Order</Link></li>
 
         <li><Link to='/signup'>signup</Link></li>
-        <li><Link to="/dashboard/mycart"><button className="btn">
-            <FaShoppingCart className='me-2'></FaShoppingCart>
-            <div className="badge badge-secondary">+{cart?.length||0}</div>
-        </button></Link></li>
-        {
-            user ? <><button onClick={handlelogout} className='btn btn-ghost'>logout</button><li>{user?.displayName}</li></> : <> <li><Link to='/login'>login</Link></li></>
-        }
+        <li><Link to={isadmin ? '/dashboard/adminhome' : "/dashboard/userhome"}>
+            {isadmin ? <div className='me-2'>DashBoard</div> : <div><FaShoppingCart className='me-2'></FaShoppingCart>
+                <div className="badge badge-secondary">+{cart?.length || 0}</div></div>}
+        </Link></li>
+
     </>
     return (
         <div>
@@ -55,7 +55,9 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                    {
+                        user ? <><li>{user?.displayName}</li><button onClick={handlelogout} className='btn btn-ghost'>logout</button></> : <> <li><Link to='/login'>login</Link></li></>
+                    }
                 </div>
             </div>
         </div>

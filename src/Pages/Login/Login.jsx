@@ -45,7 +45,7 @@ const Login = () => {
            .then(result=>{
             const loogeduser=result.user;
             const saveduser={name:loogeduser.displayName,email:loogeduser.email}
-            fetch('http://localhost:5000/users',{
+            fetch('https://bistro-boss-server-abdulrakib196756.vercel.app/users',{
                             method:'POST',
                             headers:{
                                 'content-type':'application/json'

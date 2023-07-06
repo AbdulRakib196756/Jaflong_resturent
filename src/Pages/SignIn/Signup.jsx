@@ -24,7 +24,7 @@ const Signup = () => {
                 updateuserprofile(data.name,data.url)
                     .then(() => {
                         const saveduser={name:data.name,email:data.email}
-                        fetch('http://localhost:5000/users',{
+                        fetch('https://bistro-boss-server-abdulrakib196756.vercel.app/users',{
                             method:'POST',
                             headers:{
                                 'content-type':'application/json'
